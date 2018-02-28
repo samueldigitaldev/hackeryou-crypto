@@ -17,10 +17,3 @@ ReactDOM.render(
     </BrowserRouter>
     , document.getElementById("root"));
 
-
-
-    //             <Header />
-    //             <header>Dummy Header</header>
-    //             <div>About</div>
-    //             <div>Contact Us</div>
-    //             <footer>Dummy Footer</footer>
