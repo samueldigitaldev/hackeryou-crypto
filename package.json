@@ -3,26 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "express": "^4.16.2",
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.13.9",
     "morgan": "^1.9.0",
+    "node-sass-chokidar": "0.0.3",
     "nodemon": "^1.14.11",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-scripts": "1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "client": "react-scripts start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "nodemon lib/index.js  --ignore src/"
+  },
+  "proxy": "http://localhost:3090",
+  "devDependencies": {
+    "react-router-dom": "^4.2.2",
+    "standard": "^11.0.0"
   }
 }
