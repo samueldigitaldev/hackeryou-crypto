@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import axios from 'axios';
+import { Route } from 'react-router-dom';
+import Dashboard from '../containers/dashboard'
 
 class Signup extends Component {
   constructor(){
@@ -15,21 +18,23 @@ handleEmailChange = (e) => {
 
 handlePasswordChange = (e) => {
     this.setState({password: e.target.value})
-    
 }
 
 handleSubmit = (e) => {
     e.preventDefault();
-    // axios.post('http://localhost:3090/signin', {
-    //     email: this.state.email,
-    //     password: this.state.password
-    // })
-    // .then(function (response) {
-    //     console.log(response);
-    // })
-    // .catch(function (error) {
-    //     console.log(error);
-    // });
+    axios.post(`/signup`, {
+        email: this.state.email,
+        password: this.state.password
+    })
+    .then(function (response) {
+        localStorage.setItem('token', response.data.token);
+        console.log(response.data.token);
+        // this.setState({signedIn: true})
+
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
 
 }
 

@@ -1,25 +1,23 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class About extends Component {
-  render () {
-    return (
+const About = () => {
+  return (
+    <div>
+              Crypto Tracker keeps a record of all your Crypto Currency Holdings
+              My app provides relevant financial metrics
+              Sign Up Learn More
       <div>
               Crypto Tracker keeps a record of all your Crypto Currency Holdings
               My app provides relevant financial metrics
               Sign Up Learn More
-        <div>
-              Crypto Tracker keeps a record of all your Crypto Currency Holdings
-              My app provides relevant financial metrics
-              Sign Up Learn More
-        </div>
-        <div>
-              Crypto Tracker keeps a record of all your Crypto Currency Holdings
-              My app provides relevant financial metrics
-              Sign Up Learn More
-        </div>
       </div>
-    )
-  }
+      <div>
+              Crypto Tracker keeps a record of all your Crypto Currency Holdings
+              My app provides relevant financial metrics
+              Sign Up Learn More
+      </div>
+    </div>
+  )
 }
 
 export default About
