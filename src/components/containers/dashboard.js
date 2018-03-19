@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
 
+import Financial from '../common/financial'
+import Transactions from '../common/transactions'
+import TransactionsInputs from '../common/transactions-inputs'
+
 class Dashboard extends Component {
   constructor () {
     super()
@@ -11,9 +15,14 @@ class Dashboard extends Component {
   render () {
     return (
       <div>
-            Restricted Dashboard
-      </div>
 
+        <Financial />
+
+        <Transactions />
+
+        <TransactionsInputs />
+
+      </div>
     )
   }
 }

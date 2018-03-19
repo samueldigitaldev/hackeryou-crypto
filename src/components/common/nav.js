@@ -2,9 +2,7 @@ import React from 'react'
 import {Link, withRouter} from 'react-router-dom'
 
 const Nav = withRouter(({history, ...props}) => (
-
   <div>
-      {console.log(props)}
     <ul>
       <li>
         <Link to='/'>Home</Link>
@@ -17,9 +15,7 @@ const Nav = withRouter(({history, ...props}) => (
         <Link to='/dashboard'>Dashboard</Link>
       </li>
 
-      <li>
-        <Link to='/contact'>Contact</Link>
-      </li>
+      {props.signedIn ? <li onClick={props.logOut}><Link to='/'>Log Out</Link></li> : ''}
     </ul>
   </div>
 ))

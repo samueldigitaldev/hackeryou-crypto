@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import { Route } from 'react-router-dom'
 
 import Home from '../common/home'
-import Signup from '../containers/signup'
-import Signin from '../containers/signin'
+import Signup from '../common/signup'
+import Signin from '../common/signin'
 import Contact from '../common/contact'
 import Dashboard from '../containers/dashboard'
 
@@ -17,11 +17,15 @@ class Layout extends Component {
     this.state = {
       signedIn: false,
       redirect: 'signin',
-      token: ''
+      signUpOrIn: '',
+      token: '',
+      email: '',
+      password: '',
+      fireRedirect: false
     }
   }
 
-  componentWillMount () {
+  verifyToken = () => {
     const {token} = localStorage
     if (token) {
       axios.get(`/authorize`, {
@@ -31,16 +35,16 @@ class Layout extends Component {
       })
         .then((response) => {
           const {data} = response
-
           this.setState({
             signedIn: data.signedIn
           })
           const {signedIn} = this.state
-          console.log(signedIn)
+          console.log(this.state)
           if (signedIn) {
             this.setState({
               redirect: 'dashboard'
             })
+            console.log(this.state)
           } else {
             this.setState({
               redirect: 'signin'
@@ -50,17 +54,49 @@ class Layout extends Component {
         .catch(function (error) {
           console.log(error)
         })
-    }
+      }
+
   }
 
-  // updateToken = () => {
-  //   const {token} = localStorage
-  //   this.setState({
-  //     token
-  //   })
-  //   console.log(this.state.token)
-  //   this.forceUpdate()
-  // }
+  componentDidMount () {
+    this.verifyToken()
+  }
+
+  handleEmailChange = (e) => {
+    this.setState({email: e.target.value})
+  }
+
+  handlePasswordChange = (e) => {
+      let endPoint = window.location.href.substr(window.location.href.length -7,7);
+      this.setState({signUpOrIn: endPoint})
+      this.setState({password: e.target.value})
+  }
+
+  handleSignUpIn = (e) => {
+      e.preventDefault();
+      axios.post(`${this.state.signUpOrIn}`, {
+          email: this.state.email,
+          password: this.state.password
+      })
+      .then((response) => {
+        localStorage.setItem('token', response.data.token);
+        this.setState({
+            email: '',
+            password: '',
+            fireRedirect: true,
+            signedIn: true
+        })
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+    }
+
+  logOut = (e) => {
+    this.setState({signedIn: false, redirect: 'signin', fireRedirect: false})
+    localStorage.clear();
+  }
+  
 
   render () {
     return (
@@ -68,14 +104,31 @@ class Layout extends Component {
         <Nav
           signedIn={this.state.signedIn}
           redirect={this.state.redirect}
-          token={this.state.token}
+          logOut={this.logOut}
         />
         <Route exact path='/' component={Home} />
-        <Route path='/signup' component={Signup} />
-        <Route path='/signin' render={() => (
-          <Signin />
-          // updateToken={this.updateToken}
-        )} />
+        <Route path='/signup' 
+          render={() => (
+          <Signup
+          handleEmailChange={this.handleEmailChange}
+          handlePasswordChange={this.handlePasswordChange}
+          handleSignUpIn={this.handleSignUpIn}
+          fireRedirect={this.state.fireRedirect}
+          />
+        )} 
+        />
+
+        <Route path='/signin' 
+        render={() => (
+          <Signin 
+          handleEmailChange={this.handleEmailChange}
+          handlePasswordChange={this.handlePasswordChange}
+          handleSignUpIn={this.handleSignUpIn}
+          fireRedirect={this.state.fireRedirect}
+          emailPassword={this.state.emailPassword}
+          />
+        )} 
+        />
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/contact' component={Contact} />
         <Route path='/404' componenet={Contact} />
