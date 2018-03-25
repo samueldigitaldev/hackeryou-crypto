@@ -1,7 +1,8 @@
 import React from 'react';
 
 const TransactionItem = (props) => {
-    const { cryptoCurrency, dollarAmount, price, transactionType } = props.transaction
+    const { cryptoCurrency, dollarAmount, price, transactionType, _id } = props.transaction
+    console.log(_id)
     return (
         <div key={props.index}>
             <div>
@@ -14,7 +15,7 @@ const TransactionItem = (props) => {
             {cryptoCurrency === 2 ? <div>Litecoin</div> : null}  
             
             <div>{price}</div>
-            <button onClick={() => props.removeTransaction(props.index)}>
+            <button onClick={() => props.removeTransaction(props.index, _id)}>
                 Remove Transaction
             </button>
         </div>

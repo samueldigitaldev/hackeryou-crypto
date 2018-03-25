@@ -37,15 +37,30 @@ class Dashboard extends Component {
       });
     }
     
-    removeTransaction = (index) => {
-      const nextTransaction = Array.from(this.state.transactionsList);
-      nextTransaction.splice(index, 1);
-      this.setState({
-          transactionsList: nextTransaction
+    removeTransaction = (index, id) => {
+      const {token} = localStorage
+      
+      axios({
+        method: 'delete',
+        url: '/deleteTransaction',
+        data: {
+          _id: id
+        },
+        headers: {
+          "Authorization" : token,
+        }
+      })
+      .then((response) => {
+        console.log(response)
+        const nextTransaction = Array.from(this.state.transactionsList);
+        nextTransaction.splice(index, 1);
+        this.setState({
+            transactionsList: nextTransaction
+      })
+      }).catch(function (error) {
+        console.log(error)
       })
     }
-
-
 
   
   render () {

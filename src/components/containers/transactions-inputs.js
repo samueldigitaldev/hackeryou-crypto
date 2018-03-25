@@ -8,8 +8,8 @@ class TransactionsInputs extends Component {
       transactionType: true,
       cryptoType: '0',
       dollarAmount: '',
-      priceOfTransaction: ''
-
+      priceOfTransaction: '',
+      numToCrypto: 'Bitcoin'
     }
   }
 
@@ -20,6 +20,7 @@ class TransactionsInputs extends Component {
     }
     if(e.target.name === 'cryptoType'){
       this.setState({cryptoType: e.target.value})
+      this.numToCrypto(e.target.value);
     }
     if(e.target.name === 'dollarAmount'){
       this.setState({dollarAmount: e.target.value})
@@ -27,11 +28,11 @@ class TransactionsInputs extends Component {
     if(e.target.name === 'price'){
       this.setState({priceOfTransaction: e.target.value})
     }
+
   }
 
   handleSubmit = (e) =>{
     e.preventDefault();   
-
       axios.post(`/postTransactions`, {
         headers: {
           "Authorization": localStorage.token
@@ -54,10 +55,19 @@ class TransactionsInputs extends Component {
       .catch(function (error) {
         console.log(error)
       })
-    // if (e.target.name === 'clear') {
+  }
 
-    // }
-
+  numToCrypto = (cryptoType) => {
+    console.log(cryptoType)
+    if(cryptoType === '0') {
+      this.setState({numToCrypto: "Bitcoin"})
+    }
+    if(cryptoType === '1') {
+      this.setState({numToCrypto: "Ethereum"})
+    }
+    if(cryptoType === '2') {
+      this.setState({numToCrypto: "Litecoin"})
+    }
   }
 
   render() {
@@ -90,7 +100,7 @@ class TransactionsInputs extends Component {
         </div>
     
         <div>
-          <label>Price per Crypto</label>
+          <label>Price per {this.state.numToCrypto}</label>
           <input name="price" type='number' onChange={this.handleTransaction} value={this.state.priceOfTransaction}/>
         </div>
   
