@@ -79,7 +79,9 @@ class Layout extends Component {
           password: this.state.password
       })
       .then((response) => {
+        console.log(response)
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', response.data.user);
         this.setState({
             email: '',
             password: '',

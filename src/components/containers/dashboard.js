@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import Financial from '../common/financial'
 import TransactionList from '../common/transaction-list'
-import TransactionsInputs from '../common/transactions-inputs'
+import TransactionsInputs from './transactions-inputs'
 
 class Dashboard extends Component {
   constructor () {
@@ -14,6 +14,10 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+    this.getTransactions();
+  }
+
+  getTransactions = () => {
     const {token} = localStorage
     axios.get('/listtransactions', { 
         headers: 
@@ -22,6 +26,7 @@ class Dashboard extends Component {
         }
     })
     .then((response) => {
+      console.log(response)
       const { payload } = response.data;
       this.setState({
         transactionsList: payload
@@ -31,7 +36,7 @@ class Dashboard extends Component {
       console.log(error);
       });
     }
-
+    
     removeTransaction = (index) => {
       const nextTransaction = Array.from(this.state.transactionsList);
       nextTransaction.splice(index, 1);
@@ -39,6 +44,9 @@ class Dashboard extends Component {
           transactionsList: nextTransaction
       })
     }
+
+
+
   
   render () {
     return (
@@ -47,9 +55,11 @@ class Dashboard extends Component {
         <TransactionList
           transactionsList={this.state.transactionsList}
           removeTransaction={this.removeTransaction} 
-
         />
-        <TransactionsInputs />
+        <TransactionsInputs
+          getTransactions={this.getTransactions} 
+          
+        />
       </div>
     )
   }
