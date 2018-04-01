@@ -58,7 +58,6 @@ class TransactionsInputs extends Component {
   }
 
   numToCrypto = (cryptoType) => {
-    console.log(cryptoType)
     if(cryptoType === '0') {
       this.setState({numToCrypto: "Bitcoin"})
     }
@@ -81,7 +80,7 @@ class TransactionsInputs extends Component {
           <label>Transaction Type</label>
           <select name="transactionType" onChange={this.handleTransaction} value={this.state.transactionType}>
             <option value='true' selected="Bought">Bought</option>
-            <option value='false'>Sold</option>
+            {/* <option value='false'>Sold</option> */}
           </select>
         </div>
 

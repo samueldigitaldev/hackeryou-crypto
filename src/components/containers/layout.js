@@ -39,12 +39,10 @@ class Layout extends Component {
             signedIn: data.signedIn
           })
           const {signedIn} = this.state
-          console.log(this.state)
           if (signedIn) {
             this.setState({
               redirect: 'dashboard'
             })
-            console.log(this.state)
           } else {
             this.setState({
               redirect: 'signin'
@@ -79,9 +77,8 @@ class Layout extends Component {
           password: this.state.password
       })
       .then((response) => {
-        console.log(response)
         localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', response.data.user);
+        localStorage.setItem('user', response.data.user); //Use the JWT to find the user ID in the db instead of this method
         this.setState({
             email: '',
             password: '',
