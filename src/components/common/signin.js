@@ -10,7 +10,7 @@ const Signin = (props) => {
       <label>Email</label>
       <input type='text' value={props.email} onChange={props.handleEmailChange} />
       <label> Password</label>
-      <input type='text' value={props.password} onChange={props.handlePasswordChange} />
+      <input type='password' value={props.password} onChange={props.handlePasswordChange} />
       <input type='submit' value='Submit' />
       {
         props.fireRedirect && (
