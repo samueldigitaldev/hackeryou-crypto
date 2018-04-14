@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
+import Tracker from './currency-tracker'
 import Financial from '../common/financial'
 import TransactionList from '../common/transaction-list'
 import TransactionsInputs from './transactions-inputs'
+
 
 class Dashboard extends Component {
   constructor () {
@@ -142,16 +144,19 @@ class Dashboard extends Component {
   render () {
     return (
       <div>
+        <Tracker />
         <Financial 
           transactionsList={this.state.transactionsList}
           financialNet={this.financialNet}
           currentValue={this.currentValue}
 
         />
+        <div className="transaction-item-list">
         <TransactionList
           transactionsList={this.state.transactionsList}
           removeTransaction={this.removeTransaction} 
         />
+        </div>
         <TransactionsInputs
           getTransactions={this.getTransactions} 
           

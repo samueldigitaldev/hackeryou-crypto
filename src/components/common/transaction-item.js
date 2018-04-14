@@ -3,7 +3,7 @@ import React from 'react';
 const TransactionItem = (props) => {
     const { cryptoCurrency, dollarAmount, price, transactionType, _id } = props.transaction
     return (
-        <div key={props.index}>
+        <div className="transaction-item-list-item" key={props.index}>
             <div>
                 {transactionType ? "Bought" : "Sold"}
             </div>
