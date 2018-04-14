@@ -21,6 +21,7 @@
     "passport-local": "^1.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-icons-kit": "^1.0.7",
     "react-localstorage": "^1.0.0",
     "react-materialize": "^2.1.2",
     "react-router": "^4.2.0",
