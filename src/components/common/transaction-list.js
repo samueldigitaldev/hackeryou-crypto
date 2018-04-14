@@ -4,7 +4,7 @@ import Transaction from './transaction-item'
 const TransactionList = (props) => {
   const { transactionsList } = props  
   return (
-    <ul> 
+    <div>
       {transactionsList.map((transaction, i) => {
         return(
           <Transaction 
@@ -13,8 +13,8 @@ const TransactionList = (props) => {
               removeTransaction={props.removeTransaction}
           />
         )
-      })}            
-    </ul>
+      })}   
+    </div>         
 
   )
 }
