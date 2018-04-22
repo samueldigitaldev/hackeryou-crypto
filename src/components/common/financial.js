@@ -3,7 +3,7 @@ import React from 'react'
 const Financial = (props) => {
   return (
     <div>
-      <h2>Restricted Dashboard</h2>
+      <h2>Transaction Dashboard</h2>
       <div>Net Amount Spent: {props.financialNet()}</div>
       <div>Net Value of Assets: {props.currentValue()}</div>
       <div>Return on Investment:

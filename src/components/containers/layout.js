@@ -131,7 +131,6 @@ class Layout extends Component {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/contact' component={Contact} />
         <Route path='/404' componenet={Contact} />
-        <Footer />
       </div>
     )
   }

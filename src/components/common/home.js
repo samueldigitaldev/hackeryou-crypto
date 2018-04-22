@@ -2,8 +2,8 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>
-      <h1>Crypto Tracker keeps a record of all your Crypto Currency Holdings</h1>
+    <div class="center">
+      <h1>Crypto Tracker</h1>
       <p>My app provides relevant financial metrics</p>
       <ul>
         <li>Sign Up</li> <li>Learn More</li></ul>

@@ -76,34 +76,34 @@ class TransactionsInputs extends Component {
           Crypto Tracker Inputs!
         </div>
 
-        <div>
-          <label>Transaction Type</label>
+        <div class="input-field col s12">
           <select name="transactionType" onChange={this.handleTransaction} value={this.state.transactionType}>
             <option value='true' selected="Bought">Bought</option>
             {/* <option value='false'>Sold</option> */}
           </select>
+          <label>Transaction Type</label>
         </div>
 
-        <div>
-          <label>Cryptocurrency</label>
+        <div class="input-field col s12">
           <select name="cryptoType" onChange={this.handleTransaction} value={this.state.cryptoType}>
             <option value='0'>Bitcoin</option>
             <option value='1'>Ethereum</option>
             <option value='2'>Litecoin</option>
           </select>
+          <label>Cryptocurrency</label>
         </div>
 
-        <div>
-          <label>Dollar Amount</label>
+        <div class="input-field col s12">
           <input name="dollarAmount" type='number' onChange={this.handleTransaction} value={this.state.dollarAmount}/>
+          <label>Dollar Amount</label>
         </div>
     
-        <div>
-          <label>Price per {this.state.numToCrypto}</label>
+        <div class="input-field col s12">
           <input name="price" type='number' onChange={this.handleTransaction} value={this.state.priceOfTransaction}/>
+          <label>Price per {this.state.numToCrypto}</label>
         </div>
   
-        <input name="submit" type='submit' value='Submit' onSubmit={this.handleSubmit}/>
+        <input class="waves-effect waves-light btn" name="submit" type='submit' value='Submit' onSubmit={this.handleSubmit}/>
   
       </form>
     )  

@@ -18,7 +18,7 @@ const TransactionItem = (props) => {
             {cryptoCurrency === 1 ? 'Ethereum' : null}
             {cryptoCurrency === 2 ? 'Litecoin' : null}  
             </div>
-            <button onClick={() => props.removeTransaction(props.index, _id)}>
+            <button class="waves-effect waves-light btn" onClick={() => props.removeTransaction(props.index, _id)}>
                 Remove Transaction
             </button>
         </div>
