@@ -4,20 +4,19 @@ import { Redirect } from 'react-router'
 const SignUp = (props) => {
   return (
     <form onSubmit={props.handleSignUpIn}>
-      <label>
+      <h2>
             Crypto Tracker Sign Up!
-      </label>
+      </h2>
       <label>Email</label>
       <input type='text' value={props.email} onChange={props.handleEmailChange} />
       <label> Password</label>
       <input type='password' value={props.password} onChange={props.handlePasswordChange} />
-      <input type='submit' value='Submit' />
+      <input class="waves-effect waves-light btn" type='submit' value='Submit' />
       {
         props.fireRedirect && (
           <Redirect to={'/dashboard'} />
         )
       }
-
       
     </form>
 

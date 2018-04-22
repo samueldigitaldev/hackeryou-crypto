@@ -59,6 +59,7 @@ class Tracker extends Component{
     render() {
         return (
             <div>
+                <h2>Crypto Tracker</h2>
                 <div>
                     <FeaturedCurrency 
                         featuredCurrency={this.state.featuredCurrency}
